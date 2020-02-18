@@ -170,6 +170,14 @@ $(document).ready(function() {
       var recipeDiv = $("<div class='col s3'>");
       
       var recipeNameGrab = response.title;
+      var recipeInfo = $("<div class='col s9'>");
+      var recipeSpoonURL = response.sourceUrl
+      console.log("recipe URL: " + recipeSpoonURL)
+
+      var cookBook = $("<a target='_blank'>").attr("href", recipeSpoonURL).addClass("linkBtn");
+      cookBook.append("<img src='./assets/images/recipe.png' id='recipeImg' alt='cookbook image'>")
+      recipeInfo.append(cookBook);
+
       var recipeName = $("<h5>").text(recipeNameGrab);
       recipeName.addClass("recipeName");
       recipeDiv.append(recipeName)
@@ -182,14 +190,6 @@ $(document).ready(function() {
       pic.attr("alt", response.title)
       recipeDiv.append(pic);
       console.log("recipe image URL: " + picGrab)
-
-      var recipeInfo = $("<div class='col s9'>");
-      var recipeSpoonURL = response.sourceUrl
-      console.log("recipe URL: " + recipeSpoonURL)
-
-      var cookBook = $("<a target='_blank'>").attr("href", recipeSpoonURL).addClass("linkBtn");
-      cookBook.append("<img src='./assets/images/recipe.png' id='recipeImg' alt='cookbook image'>")
-      recipeInfo.append(cookBook);
 
       var dietType0 = response.diets[0];
       var dietType1 = response.diets[1];
@@ -221,9 +221,9 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       console.log(response)
-      var A = Math.floor(Math.random()*19);
-      var B = Math.floor(Math.random()*19);
-      var C = Math.floor(Math.random()*19);
+      var A = Math.floor(Math.random()*10);
+      var B = Math.floor(Math.random()*10);
+      var C = Math.floor(Math.random()*10);
       recipeCall(response.results[A].id);
       recipeCall(response.results[B].id);
       recipeCall(response.results[C].id);
